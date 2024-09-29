@@ -32,7 +32,7 @@ javacOptions ++= Seq(
   "-g:vars"
 )
 
-val sparkVersion = "3.0.0"
+val sparkVersion = "3.4.3"
 
 libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-sql" % sparkVersion % "provided",
@@ -41,12 +41,12 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-catalyst" % sparkVersion % Test classifier "tests",
   "org.apache.spark" %% "spark-sql" % sparkVersion % Test classifier "tests",
   "org.apache.spark" %% "spark-sql-kafka-0-10" % sparkVersion % Test classifier "tests",
-  "org.apache.kafka" %% "kafka" % "2.4.1" % Test,
-  "org.scalatest" %% "scalatest" % "3.0.3" % Test withSources(),
-  "junit" % "junit" % "4.12" % Test,
+  "org.apache.kafka" %% "kafka" % "3.7.1" % Test,
+  "org.scalatest" %% "scalatest" % "3.2.19" % Test withSources(),
+  "junit" % "junit" % "4.13.2" % Test,
 
   // update this when updating Spark version
-  "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.10.0" % Test,
+  "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.17.2" % Test,
 )
 
 

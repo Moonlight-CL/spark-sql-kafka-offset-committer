@@ -109,13 +109,14 @@ class KafkaSourceInspector(sparkPlan: SparkPlan) {
       r: DataSourceV2ScanExecBase): Option[Map[String, Object]] = {
     r.inputRDDs().flatMap { rdd =>
       rdd.partitions.flatMap {
-        case e: DataSourceRDDPartition => e.inputPartition match {
+
+        case e: DataSourceRDDPartition => e.inputPartitions.flatMap(p => p match {
           case part: KafkaBatchInputPartition =>
             Some(part.executorKafkaParams.asScala.toMap)
           case part: KafkaContinuousInputPartition =>
             Some(part.kafkaParams.asScala.toMap)
           case _ => None
-        }
+        })
       }
     }.headOption
   }
